@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31903.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputHook", "InputHook\InputHook.csproj", "{21A7B72A-37DC-4662-AEEC-B35DB1C40EFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputHook.Test", "InputHook.Test\InputHook.Test.csproj", "{B8503A1F-1998-47B5-A7A3-40A3163CA72B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21A7B72A-37DC-4662-AEEC-B35DB1C40EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A7B72A-37DC-4662-AEEC-B35DB1C40EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A7B72A-37DC-4662-AEEC-B35DB1C40EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A7B72A-37DC-4662-AEEC-B35DB1C40EFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8503A1F-1998-47B5-A7A3-40A3163CA72B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8503A1F-1998-47B5-A7A3-40A3163CA72B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8503A1F-1998-47B5-A7A3-40A3163CA72B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8503A1F-1998-47B5-A7A3-40A3163CA72B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18ADADC8-4736-448D-8DB1-F27FC336DBB0}
+	EndGlobalSection
+EndGlobal
