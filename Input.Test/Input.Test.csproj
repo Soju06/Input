@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InputHook\InputHook.csproj" />
+    <ProjectReference Include="..\Input\Input.csproj" />
   </ItemGroup>
 
 </Project>

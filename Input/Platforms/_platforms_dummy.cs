@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace InputHook.Models {
-    internal class MouseModel {
+namespace Input.Platforms {
+    internal class _platforms_dummy {
+
     }
 }

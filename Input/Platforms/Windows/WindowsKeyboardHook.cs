@@ -1,41 +1,52 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace InputHook.Platforms.Windows {
+namespace Input.Platforms.Windows {
     /// <summary>
     /// 윈도우용 후커
     /// </summary>
     public sealed class WindowsKeyboardHook : IKeyboardHook {
-        /// <summary>
-        /// 로우 레벨 후킹
-        /// </summary>
-        public const bool LowLevelHook = true;
-
         readonly WinAPI.LLKeyboardHook CallbackDelegate;
         IntPtr hookHandle;
         bool isHooking, isPaused, disposedValue;
+        InputHookStatus hookStatus;
 
+        [Obsolete]
         public WindowsKeyboardHook() {
             if (!Platform.IsWindows) throw new PlatformNotSupportedException();
             CallbackDelegate = new(HookProc);
+            KeyboardModel = new();
         }
 
         public void HookStart() {
+            if (disposedValue)
+                throw new ObjectDisposedException("this");
+
             try {
-                isPaused = false;
+                if (isPaused && isHooking) {
+                    isPaused = false;
+                    hookStatus = InputHookStatus.Running;
+                    return;
+                }
+
                 if (isHooking) return;
-                hookHandle = WinAPI.SetWindowsHookEx(LowLevelHook ? WinAPI.WH_KEYBOARD_LL : WinAPI.WH_KEYBOARD,
+
+                hookHandle = WinAPI.SetWindowsHookEx(WinAPI.WH_KEYBOARD_LL,
                     CallbackDelegate, WinAPI.LoadLibrary("user32"), 0);
                 System.Diagnostics.Debug.WriteLine("Hooker for Windows started.");
-                //(ApplicationLoop = new()).Start();
+
                 isHooking = true;
+                hookStatus = InputHookStatus.Running;
             } catch (Exception ex) {
                 System.Diagnostics.Debug.WriteLine($"Failed to start keyboard hooker for windows.\n{ex}");
                 isHooking = false;
+                hookStatus = InputHookStatus.Stopped;
+                throw ex;
             }
         }
 
         public void HookPause() {
             isPaused = true;
+            hookStatus = InputHookStatus.Paused;
         }
 
         public void HookStop() {
@@ -43,16 +54,18 @@ namespace InputHook.Platforms.Windows {
                 if (!isHooking) return;
                 WinAPI.UnhookWindowsHookEx(hookHandle);
                 System.Diagnostics.Debug.WriteLine("Hooker for Windows has ended.");
-                isPaused = true;
+                isPaused = false;
                 isHooking = false;
+                hookStatus = InputHookStatus.Stopped;
             }
             catch (Exception ex) {
                 System.Diagnostics.Debug.WriteLine(ex, $"Failed to stop keyboard hooking for Windows.\n{ex}");
                 isHooking = true;
+                throw ex;
             }
         }
 
-        int HookProc(int code, int wParam, ref WinAPI.KeyBoardHookStruct lParam) {
+        int HookProc(int code, int wParam, ref WinAPI.KeyBoardLLHookStruct lParam) {
             if (code >= 0 && !isPaused) {
                 var key = (WindowsKeys)lParam.vkCode;
                 var state = wParam switch {
@@ -216,6 +229,10 @@ namespace InputHook.Platforms.Windows {
         public KeyboardModel KeyboardModel { get; set; }
         public bool Debug { get; set; }
 
+        public InputHookStatus HookStatus => hookStatus;
+
+        public bool IsRunning => isHooking;
+
         private void Dispose(bool disposing) {
             if (!disposedValue) {
                 if (disposing) {
@@ -235,6 +252,15 @@ namespace InputHook.Platforms.Windows {
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
+
+        /// <summary>
+        /// 윈도우용 키보드 후커
+        /// </summary>
+        /// <exception cref="NotSupportedException" />
+        public static WindowsKeyboardHook Create() =>
+            new();
+
+        public static int GetSupportPlatforms() => (int)InputHook.platform.windows;
     }
 
     [Flags]

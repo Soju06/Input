@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31903.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputHook", "InputHook\InputHook.csproj", "{21A7B72A-37DC-4662-AEEC-B35DB1C40EFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Input", "Input\Input.csproj", "{21A7B72A-37DC-4662-AEEC-B35DB1C40EFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputHook.Test", "InputHook.Test\InputHook.Test.csproj", "{B8503A1F-1998-47B5-A7A3-40A3163CA72B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Input.Test", "Input.Test\Input.Test.csproj", "{B8503A1F-1998-47B5-A7A3-40A3163CA72B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

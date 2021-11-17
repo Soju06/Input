@@ -1,4 +1,4 @@
-﻿namespace InputHook {
+﻿namespace Input {
     public interface IInputHook : IDisposable {
         /// <summary>
         /// 디버깅
@@ -6,18 +6,28 @@
         public bool Debug { get; set; }
 
         /// <summary>
+        /// 후커 상태
+        /// </summary>
+        public InputHookStatus HookStatus { get; }
+
+        /// <summary>
+        /// 후킹중
+        /// </summary>
+        public bool IsRunning { get; }
+
+        /// <summary>
         /// 후킹 시작
         /// </summary>
-        protected void HookStart();
+        public void HookStart();
 
         /// <summary>
         /// 후킹 정지
         /// </summary>
-        protected void HookStop();
+        public void HookStop();
 
         /// <summary>
         /// 후킹 일시 정지
         /// </summary>
-        protected void HookPause();
+        public void HookPause();
     }
 }

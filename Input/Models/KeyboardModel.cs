@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace InputHook.Models {
+namespace Input.Models {
     /// <summary>
     /// 키보드 모델
     /// </summary>
@@ -38,7 +38,7 @@ namespace InputHook.Models {
         bool disposedValue;
 
         public KeyboardModel() {
-            // 필요한 short 배열 수;
+            // 필요한 byte 배열 수;
             fixed_data_length = input_keys.Length;
             // 메모리 할당 (헤더 + 데이터)
             input_data = (byte*)Marshal.AllocHGlobal(fixed_data_length * sizeof(byte) * 2);

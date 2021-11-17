@@ -1,4 +1,4 @@
-﻿namespace InputHook {
+﻿namespace Input {
     /// <summary>
     /// 인풋 후킹 컴포넌트
     /// </summary>

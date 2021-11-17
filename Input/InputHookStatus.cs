@@ -1,4 +1,4 @@
-﻿namespace InputHook {
+﻿namespace Input {
     /// <summary>
     /// 후커 상태
     /// </summary>

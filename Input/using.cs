@@ -5,4 +5,4 @@ global using System.Threading;
 global using System.Threading.Tasks;
 global using System.Collections;
 global using System.Collections.Generic;
-global using InputHook.Models;
+global using Input.Models;

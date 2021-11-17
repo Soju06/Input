@@ -1,4 +1,4 @@
-﻿namespace InputHook.Test {
+﻿namespace Input.Test {
     partial class Form1 {
         /// <summary>
         ///  Required designer variable.
@@ -26,6 +26,8 @@
             this.components = new System.ComponentModel.Container();
             this._log_clear_timer = new System.Windows.Forms.Timer(this.components);
             this._log = new System.Windows.Forms.ListBox();
+            this._keyboard_hook_chk = new System.Windows.Forms.CheckBox();
+            this._mouse_hook_chk = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // _log_clear_timer
@@ -43,20 +45,48 @@
             this._log.ItemHeight = 15;
             this._log.Location = new System.Drawing.Point(12, 12);
             this._log.Name = "_log";
-            this._log.Size = new System.Drawing.Size(429, 334);
+            this._log.Size = new System.Drawing.Size(455, 349);
             this._log.TabIndex = 0;
+            // 
+            // _keyboard_hook_chk
+            // 
+            this._keyboard_hook_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._keyboard_hook_chk.AutoSize = true;
+            this._keyboard_hook_chk.Location = new System.Drawing.Point(12, 371);
+            this._keyboard_hook_chk.Name = "_keyboard_hook_chk";
+            this._keyboard_hook_chk.Size = new System.Drawing.Size(90, 19);
+            this._keyboard_hook_chk.TabIndex = 1;
+            this._keyboard_hook_chk.Text = "키보드 후킹";
+            this._keyboard_hook_chk.UseVisualStyleBackColor = true;
+            this._keyboard_hook_chk.CheckedChanged += new System.EventHandler(this.OnKeyboardHook);
+            // 
+            // _mouse_hook_chk
+            // 
+            this._mouse_hook_chk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._mouse_hook_chk.AutoSize = true;
+            this._mouse_hook_chk.Location = new System.Drawing.Point(108, 371);
+            this._mouse_hook_chk.Name = "_mouse_hook_chk";
+            this._mouse_hook_chk.Size = new System.Drawing.Size(90, 19);
+            this._mouse_hook_chk.TabIndex = 2;
+            this._mouse_hook_chk.Text = "마우스 후킹";
+            this._mouse_hook_chk.UseVisualStyleBackColor = true;
+            this._mouse_hook_chk.CheckedChanged += new System.EventHandler(this.OnMouseHookChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 362);
+            this.ClientSize = new System.Drawing.Size(479, 402);
+            this.Controls.Add(this._mouse_hook_chk);
+            this.Controls.Add(this._keyboard_hook_chk);
             this.Controls.Add(this._log);
+            this.MinimumSize = new System.Drawing.Size(255, 158);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnClosing);
             this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -64,5 +94,7 @@
 
         private ListBox _log;
         private System.Windows.Forms.Timer _log_clear_timer;
+        private CheckBox _keyboard_hook_chk;
+        private CheckBox _mouse_hook_chk;
     }
 }

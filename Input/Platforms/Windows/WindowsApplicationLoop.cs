@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace InputHook.Platforms.Windows {
+namespace Input.Platforms.Windows {
     public class WindowsApplicationLoop {
         bool disposedValue;
         Thread? Thread;

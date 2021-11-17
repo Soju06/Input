@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace InputHook {
+namespace Input {
     /// <summary>
     /// 플렛폼
     /// </summary>
