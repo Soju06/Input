@@ -1,16 +1,17 @@
 using Input.Models;
+using Input.Platforms.Windows;
 
 namespace Input.Test {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
-            (keyboardHook = InputHook.Use<IKeyboardHook>()).Debug = true;
+            (keyboardHook = Input.UseHook<IKeyboardHook>()).Debug = true;
 
             keyboard = keyboardHook.KeyboardModel;
             keyboard.KeyUp += OnKeyUp;
             keyboard.KeyDown += OnKeyDown;
 
-            (mouseHook = InputHook.Use<IMouseHook>()).Debug = true;
+            (mouseHook = Input.UseHook<IMouseHook>()).Debug = true;
             mouse = mouseHook.MouseModel;
 
             mouse.State += OnMouseState;
@@ -64,9 +65,17 @@ namespace Input.Test {
         }
 
         private void OnKeyboardHook(object sender, EventArgs e) {
+            
             if (_keyboard_hook_chk.Checked)
                 keyboardHook.HookStart();
             else keyboardHook.HookStop();
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            var sim = new WindowsKeyboardSimulation();
+            textBox1.Focus();
+            sim.Click(InputKeys.N, InputKeys.O, InputKeys.T, InputKeys.E, InputKeys.P, InputKeys.A, InputKeys.D, InputKeys.Enter);
+            sim.Click(InputKeys.H, InputKeys.E, InputKeys.L, InputKeys.L, InputKeys.O);
         }
     }
 }

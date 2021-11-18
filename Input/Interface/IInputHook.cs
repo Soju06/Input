@@ -1,10 +1,5 @@
 ﻿namespace Input {
-    public interface IInputHook : IDisposable {
-        /// <summary>
-        /// 디버깅
-        /// </summary>
-        public bool Debug { get; set; }
-
+    public interface IInputHook : IInputModule {
         /// <summary>
         /// 후커 상태
         /// </summary>

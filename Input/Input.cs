@@ -5,17 +5,19 @@ namespace Input {
     /// <summary>
     /// 인풋 후커
     /// </summary>
-    public static class InputHook {
+    public static class Input {
         static readonly Type[] supportPlatformsMethodReturnTypes = new Type[] { typeof(int), typeof(platform) };
 
         static readonly Dictionary<Type, Type[]> cached_types = new();
+
+        #region InputHook
 
         /// <summary>
         /// 인풋 후커를 만듭니다.
         /// </summary>
         /// <typeparam name="TInputHook">후커</typeparam>
         /// <exception cref="NotSupportedException"></exception>
-        public static TInputHook Use<TInputHook>() where TInputHook : IInputHook =>
+        public static TInputHook UseHook<TInputHook>() where TInputHook : IInputHook =>
             (TInputHook)Use(typeof(TInputHook));
 
         /// <summary>
@@ -24,26 +26,49 @@ namespace Input {
         /// <typeparam name="TInputHook">후커</typeparam>
         /// <param name="assembly">참조 어셈블리</param>
         /// <exception cref="NotSupportedException"></exception>
-        public static TInputHook Use<TInputHook>(Assembly? assembly) where TInputHook : IInputHook =>
+        public static TInputHook UseHook<TInputHook>(Assembly? assembly) where TInputHook : IInputHook =>
             (TInputHook)Use(typeof(TInputHook), assembly);
 
-        /// <summary>
-        /// 인풋 후커를 만듭니다.
-        /// </summary>
-        /// <param name="inputHookType">후커 타입</param>
-        /// <exception cref="NotSupportedException"></exception>
-        public static object Use(Type inputHookType) =>
-            Use(inputHookType, null);
+        #endregion
+
+        #region InputSimulation
 
         /// <summary>
-        /// 인풋 후커를 만듭니다.
+        /// 인풋을 만듭니다.
         /// </summary>
-        /// <param name="inputHookType">후커 타입</param>
+        /// <typeparam name="TInputSimulation">입력기</typeparam>
+        /// <exception cref="NotSupportedException"></exception>
+        public static TInputSimulation UseSimulation<TInputSimulation>() where TInputSimulation : IInputSimulation =>
+            (TInputSimulation)Use(typeof(TInputSimulation));
+
+        /// <summary>
+        /// 인풋을 만듭니다.
+        /// </summary>
+        /// <typeparam name="TInputSimulation">입력기</typeparam>
         /// <param name="assembly">참조 어셈블리</param>
         /// <exception cref="NotSupportedException"></exception>
-        public static object Use(Type inputHookType, Assembly? assembly) {
-            var module_type = GetSupportedModule(inputHookType, assembly);
-            if (module_type == null) throw new NotSupportedException($"{inputHookType.Name}을 지원하는 모듈이 없습니다.");
+        public static TInputSimulation UseSimulation<TInputSimulation>(Assembly? assembly) where TInputSimulation : IInputSimulation =>
+            (TInputSimulation)Use(typeof(TInputSimulation), assembly);
+
+        #endregion
+
+        /// <summary>
+        /// 인풋을 만듭니다.
+        /// </summary>
+        /// <param name="inputHookType">타입</param>
+        /// <exception cref="NotSupportedException"></exception>
+        public static object Use(Type inputType) =>
+            Use(inputType, null);
+
+        /// <summary>
+        /// 인풋을 만듭니다.
+        /// </summary>
+        /// <param name="inputType">타입</param>
+        /// <param name="assembly">참조 어셈블리</param>
+        /// <exception cref="NotSupportedException"></exception>
+        public static object Use(Type inputType, Assembly? assembly) {
+            var module_type = GetSupportedModule(inputType, assembly);
+            if (module_type == null) throw new NotSupportedException($"{inputType.Name}을 지원하는 모듈이 없습니다.");
             return module_type.CreateInstance();
         }
 
@@ -56,8 +81,8 @@ namespace Input {
         }
 
         static Type? GetSupportedModule(Type hookType, Assembly? assembly = null) {
-            if (!typeof(IInputHook).IsAssignableFrom(hookType)) 
-                throw new NotSupportedException("IInputHook 인터페이스 형식이 아닙니다.");
+            if (!typeof(IInputModule).IsAssignableFrom(hookType)) 
+                throw new NotSupportedException("IInputModule 인터페이스 형식이 아닙니다.");
 
             var platform = GetCurrentPlatform();
             var types = GetInterfaceTypes(hookType, assembly);

@@ -28,6 +28,8 @@
             this._log = new System.Windows.Forms.ListBox();
             this._keyboard_hook_chk = new System.Windows.Forms.CheckBox();
             this._mouse_hook_chk = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // _log_clear_timer
@@ -43,9 +45,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._log.FormattingEnabled = true;
             this._log.ItemHeight = 15;
-            this._log.Location = new System.Drawing.Point(12, 12);
+            this._log.Location = new System.Drawing.Point(10, 17);
             this._log.Name = "_log";
-            this._log.Size = new System.Drawing.Size(455, 349);
+            this._log.Size = new System.Drawing.Size(418, 349);
             this._log.TabIndex = 0;
             // 
             // _keyboard_hook_chk
@@ -72,11 +74,31 @@
             this._mouse_hook_chk.UseVisualStyleBackColor = true;
             this._mouse_hook_chk.CheckedChanged += new System.EventHandler(this.OnMouseHookChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(434, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(434, 51);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(309, 315);
+            this.textBox1.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 402);
+            this.ClientSize = new System.Drawing.Size(755, 402);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this._mouse_hook_chk);
             this.Controls.Add(this._keyboard_hook_chk);
             this.Controls.Add(this._log);
@@ -96,5 +118,7 @@
         private System.Windows.Forms.Timer _log_clear_timer;
         private CheckBox _keyboard_hook_chk;
         private CheckBox _mouse_hook_chk;
+        private Button button1;
+        private TextBox textBox1;
     }
 }

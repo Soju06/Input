@@ -124,6 +124,6 @@
         public static WindowsMouseHook Create() =>
             new();
 
-        public static int GetSupportPlatforms() => (int)InputHook.platform.windows;
+        public static int GetSupportPlatforms() => (int)Input.platform.windows;
     }
 }

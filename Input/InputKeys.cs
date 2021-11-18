@@ -4,12 +4,26 @@
 	/// </summary>
 	[Flags]
 	public enum InputKeyState : byte {
-		Up = 0x00,
+		/// <summary>
+		/// 키 뗌
+		/// </summary>
+		Up = 0x50,
+		/// <summary>
+		/// 키 눌림
+		/// </summary>
 		Down = 0x02,
+		/// <summary>
+		/// 확장 키
+		/// </summary>
 		Extended = 0x01,
+		/// <summary>
+		/// 외부 키
+		/// </summary>
 		Injected = 0x10,
-		AltPressed = 0x20,
-		Released = 0x80
+		/// <summary>
+		/// Alt 눌림
+		/// </summary>
+		AltPressed = 0x20
 	}
 
     /// <summary>
@@ -86,8 +100,10 @@
 		F6 = 0x20,
 		/// <summary>The F7 key</summary>
 		F7 = 0x21,
-		/// <summary>The F8 key</summary>
-		F8 = 0x22,
+
+		// moved
+		//F8 = 0x22,
+
 		/// <summary>The F9 key</summary>
 		F9 = 0x23,
 		/// <summary>The F10 key</summary>
@@ -263,6 +279,9 @@
 
 		/// <summary>The Numpad/number pad 'Enter' key</summary>
 		NumpadEnter = 0x8E,
+
+		/// <summary>The F8 key</summary>
+		F8 = 0x8F,
 
 		/// <summary>The Shift Key Modifier</summary>
 		Shift = 0x91,
