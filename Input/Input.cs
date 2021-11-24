@@ -1,4 +1,5 @@
 ﻿using Input.Platforms;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace Input {
@@ -7,8 +8,21 @@ namespace Input {
     /// </summary>
     public static class Input {
         static readonly Type[] supportPlatformsMethodReturnTypes = new Type[] { typeof(int), typeof(platform) };
-
         static readonly Dictionary<Type, Type[]> cached_types = new();
+        internal static event CacheClearEvent? cache_clear_event;
+
+        /// <summary>
+        /// 인풋을 만듭니다.
+        /// 
+        /// 기본 호환 가능한 타입:
+        ///     <c>TInputHook</c>
+        ///     <c>TInputSimulation</c>
+        /// </summary>
+        /// <typeparam name="TInputModule"></typeparam>
+        /// <exception cref="NotSupportedException"></exception>
+        /// <returns></returns>
+        public static TInputModule Use<TInputModule>() where TInputModule : IInputModule =>
+            (TInputModule)Use(typeof(TInputModule));
 
         #region InputHook
 
@@ -34,7 +48,7 @@ namespace Input {
         #region InputSimulation
 
         /// <summary>
-        /// 인풋을 만듭니다.
+        /// 인풋 시뮬레이션을 만듭니다.
         /// </summary>
         /// <typeparam name="TInputSimulation">입력기</typeparam>
         /// <exception cref="NotSupportedException"></exception>
@@ -53,9 +67,8 @@ namespace Input {
         #endregion
 
         /// <summary>
-        /// 인풋을 만듭니다.
+        /// 인풋 후커를 만듭니다.
         /// </summary>
-        /// <param name="inputHookType">타입</param>
         /// <exception cref="NotSupportedException"></exception>
         public static object Use(Type inputType) =>
             Use(inputType, null);
@@ -73,12 +86,38 @@ namespace Input {
         }
 
         /// <summary>
-        /// 캐시된 어셈블리의 지원 인터페이스 타입을 지웁니다.
+        /// 캐시된 개체를 초기화 합니다.
+        /// 
+        /// level >= 0:
+        ///     캐시된 어셈블리의 지원 인터페이스 타입을 지웁니다.
+        ///     
+        /// level >= 1:
+        ///     (Windows only) 캐시된 스캔 코드를 다시 불러옵니다.
         /// </summary>
-        public static void CacheClear() {
-            lock (cached_types)
-                cached_types.Clear();
+        public static void CacheClear(int level) {
+            if(level >= 0) {
+                lock (cached_types) {
+                    cached_types.Clear();
+                }
+            }
+
+            if (level >= 1 && cache_clear_event != null) {
+                lock (cache_clear_event) {
+                    try {
+                        cache_clear_event?.Invoke();
+                    } catch (Exception ex) {
+                        Debug.WriteLine($"Input cache clear exception:\n{ex}");
+                    }
+                }
+            }
         }
+
+        /// <summary>
+        /// 최대 캐시 래벨입니다.
+        /// </summary>
+        public static readonly uint MaxCacheLevel = 1;
+
+
 
         static Type? GetSupportedModule(Type hookType, Assembly? assembly = null) {
             if (!typeof(IInputModule).IsAssignableFrom(hookType)) 
@@ -139,5 +178,7 @@ namespace Input {
             osx = 0x0A,
             windows = 0x8
         }
+
+        internal delegate void CacheClearEvent();
     }
 }

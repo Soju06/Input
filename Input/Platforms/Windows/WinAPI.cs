@@ -11,6 +11,7 @@ namespace Input.Platforms.Windows {
 
         [DllImport("user32.dll")]
         public static extern IntPtr SetWindowsHookEx(int idHook, LLKeyboardHook lpfn, IntPtr hInstance, int threadId);
+
         [DllImport("user32.dll")]
         public static extern IntPtr SetWindowsHookEx(int idHook, LLMouseHook lpfn, IntPtr hInstance, int threadId);
 
@@ -26,15 +27,22 @@ namespace Input.Platforms.Windows {
         [DllImport("user32.dll", SetLastError = true)]
         public static extern uint SendInput(uint numberOfInputs, Input[] inputs, int sizeOfInputStructure);
 
+        [DllImport("user32.dll")]
+        public static extern uint MapVirtualKey(uint uCode, uint uMapType);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern short GetKeyState(ushort virtualKeyCode);
+
         public static uint SendInput(params Input[] inputs) =>
             SendInput((uint)inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
 
-        public static Input Keyboard(WindowsKeys keys, KeyboardInputFlags flags) =>
+        public static Input Keyboard(WindowsKeys keys, ushort scanCode, KeyboardInputFlags flags) =>
             new() { 
                 type = InputType.Keyboard, 
                 u = new() {
                     ki = new() { 
                         wVk = keys, 
+                        wScan = scanCode,
                         dwFlags = flags 
                     } 
                 }

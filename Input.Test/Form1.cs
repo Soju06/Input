@@ -5,16 +5,26 @@ namespace Input.Test {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
-            (keyboardHook = Input.UseHook<IKeyboardHook>()).Debug = true;
+
+
+            (keyboardHook = Input.Use<IKeyboardHook>()).Debug = true;
 
             keyboard = keyboardHook.KeyboardModel;
             keyboard.KeyUp += OnKeyUp;
             keyboard.KeyDown += OnKeyDown;
 
-            (mouseHook = Input.UseHook<IMouseHook>()).Debug = true;
+            (mouseHook = Input.Use<IMouseHook>()).Debug = true;
             mouse = mouseHook.MouseModel;
 
+            (keyboardSimulation = Input.Use<IKeyboardSimulation>()).Debug = true;
+
             mouse.State += OnMouseState;
+
+            _keyboard_input_types_box.Items.AddRange(new[] { "KeyDown", "KeyUp", "KeyClick" });
+            _keyboard_input_types_box.SelectedIndex = 0;
+
+            _keyboard_key_types_box.DataSource = (InputKeys[])Enum.GetValues(typeof(InputKeys));
+            _keyboard_input_types_box.SelectedIndex = 0;
         }
 
         private bool OnMouseState(object sender, InputButtons button, int x, int y) {
@@ -39,6 +49,7 @@ namespace Input.Test {
         MouseModel mouse;
         IKeyboardHook keyboardHook;
         IMouseHook mouseHook;
+        IKeyboardSimulation keyboardSimulation;
 
         private void OnLoad(object sender, EventArgs e) {
             
@@ -65,17 +76,50 @@ namespace Input.Test {
         }
 
         private void OnKeyboardHook(object sender, EventArgs e) {
-            
             if (_keyboard_hook_chk.Checked)
                 keyboardHook.HookStart();
             else keyboardHook.HookStop();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            var sim = new WindowsKeyboardSimulation();
-            textBox1.Focus();
-            sim.Click(InputKeys.N, InputKeys.O, InputKeys.T, InputKeys.E, InputKeys.P, InputKeys.A, InputKeys.D, InputKeys.Enter);
-            sim.Click(InputKeys.H, InputKeys.E, InputKeys.L, InputKeys.L, InputKeys.O);
+        private void OnRemoveKeyboardSimulation(object sender, EventArgs e) {
+            var selected_index = _keyboard_simulation_list_box.SelectedIndex;
+            if (selected_index >= 0)
+                _keyboard_simulation_list_box.Items.RemoveAt(selected_index);
+        }
+
+        private void OnAddKeyboardSimulation(object sender, EventArgs e) {
+            _keyboard_simulation_list_box.Items.Add((InputKeys)_keyboard_key_types_box.SelectedItem);
+        }
+
+        private void OnKeyboardSimulation(object sender, EventArgs e) {
+            if (_keyboard_simulation_list_box.Items.Count > 0) {
+                _test_input_box.Focus();
+
+                var _keys = new object[_keyboard_simulation_list_box.Items.Count];
+                _keyboard_simulation_list_box.Items.CopyTo(_keys, 0);
+
+                var keys = (from key in _keys select (InputKeys)key).ToArray();
+                var state = (string)_keyboard_input_types_box.SelectedItem;
+
+
+                switch (state) {
+                    case "KeyDown":
+                        keyboardSimulation.KeyDown(keys);
+                    break;
+
+                    case "KeyUp":
+                        keyboardSimulation.KeyUp(keys);
+                    break;
+
+                    case "KeyClick":
+                        keyboardSimulation.KeyClick(keys);
+                    break;
+                }
+            }
+        }
+
+        private void OnReleaseAllKeys(object sender, EventArgs e) {
+            keyboardSimulation.ReleaseAllKeys();
         }
     }
 }

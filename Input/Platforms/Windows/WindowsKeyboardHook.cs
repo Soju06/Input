@@ -11,7 +11,11 @@ namespace Input.Platforms.Windows {
         InputHookStatus hookStatus;
 
         [Obsolete]
-        public WindowsKeyboardHook() {
+        public WindowsKeyboardHook() : this(true) {
+
+        }
+
+        WindowsKeyboardHook(bool _) {
             if (!Platform.IsWindows) throw new PlatformNotSupportedException();
             CallbackDelegate = new(HookProc);
             KeyboardModel = new();
@@ -252,7 +256,7 @@ namespace Input.Platforms.Windows {
         /// </summary>
         /// <exception cref="NotSupportedException" />
         public static WindowsKeyboardHook Create() =>
-            new();
+            new(true);
 
         public static int GetSupportPlatforms() => (int)Input.platform.windows;
     }
