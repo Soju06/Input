@@ -68,7 +68,7 @@
         }
 
         public bool IsKeyDown(InputKeys keys) =>
-            WinAPI.GetKeyState((ushort)WinAPI.ConvetKey(keys)) < 0;
+            WinAPI.GetAsyncKeyState((ushort)WinAPI.ConvetKey(keys)) < 0;
 
         void xInput(InputKeys[] keys, WinAPI.KeyboardInputFlags flags) {
             if (disposedValue)

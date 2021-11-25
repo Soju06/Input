@@ -31,7 +31,10 @@ namespace Input.Platforms.Windows {
         public static extern uint MapVirtualKey(uint uCode, uint uMapType);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern short GetKeyState(ushort virtualKeyCode);
+        public static extern short GetAsyncKeyState(ushort virtualKeyCode);
+        
+        [DllImport("user32.dll")] 
+        public static extern int GetSystemMetrics(int systemMetric);
 
         public static uint SendInput(params Input[] inputs) =>
             SendInput((uint)inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
@@ -95,7 +98,7 @@ namespace Input.Platforms.Windows {
             public uint mouseData;
             public MouseInputFlags dwFlags;
             public uint time;
-            public IntPtr dwExtraInfo;
+            public UIntPtr dwExtraInfo;
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -169,6 +172,44 @@ namespace Input.Platforms.Windows {
             Injected = 0x10,
             AltPressed = 0x20,
             Released = 0x80
+        }
+
+        public static InputButtons ConvetButton(int button, int extra) =>
+            button switch {
+                WM_LBUTTONDOWN => InputButtons.LeftMouseDown,
+                WM_LBUTTONUP => InputButtons.LeftMouseUp,
+                WM_LBUTTONDBLCLK => InputButtons.LeftDoubleClick,
+                WM_MOUSEMOVE => InputButtons.Move,
+                WM_MOUSEWHEEL => extra > 0 ?
+                                        InputButtons.WheelMoveUp :
+                                        extra < 0 ?
+                                        InputButtons.WheelMoveDown :
+                                        InputButtons.Wheel,
+
+                WM_RBUTTONDOWN => InputButtons.RightMouseDown,
+                WM_RBUTTONUP => InputButtons.RightMouseUp,
+                WM_MBUTTONDOWN => InputButtons.WheelDown,
+                WM_MBUTTONUP => InputButtons.WheelUp,
+                _ => 0
+            };
+
+        public static MouseInputFlags ConvetButton(InputButtons button, bool extra) {
+            return button switch {
+                InputButtons.WheelMoveUp => extra ? MouseInputFlags.Wheel : MouseInputFlags.HWheel,
+                InputButtons.WheelMoveDown => extra ? MouseInputFlags.Wheel : MouseInputFlags.HWheel,
+                _ => button switch {
+                    InputButtons.LeftMouseDown => MouseInputFlags.LeftDown,
+                    InputButtons.LeftMouseUp => MouseInputFlags.LeftUp,
+                    InputButtons.LeftDoubleClick => MouseInputFlags.Move,
+                    InputButtons.Move => MouseInputFlags.Move,
+                    InputButtons.Wheel => MouseInputFlags.Wheel,
+                    InputButtons.RightMouseDown => MouseInputFlags.RightDown,
+                    InputButtons.RightMouseUp => MouseInputFlags.RightUp,
+                    InputButtons.WheelDown => MouseInputFlags.MiddleDown,
+                    InputButtons.WheelUp => MouseInputFlags.MiddleUp,
+                    _ => 0
+                },
+            };
         }
 
         public static InputKeys ConvetKey(WindowsKeys key) =>
