@@ -29,7 +29,6 @@
     /// <summary>
     /// 키
     /// </summary>
-    [Flags]
     public enum InputKeys : byte {
         /// <summary>No key</summary>
         None = 0x00,

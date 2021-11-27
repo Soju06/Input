@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Input.Platforms {
+﻿namespace Input.Platforms {
     internal class _platforms_dummy {
-
+        // 대충 중요한거니 지우면 안돼요~
     }
 }

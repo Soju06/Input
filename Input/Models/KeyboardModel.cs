@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace Input.Models {
     /// <summary>
@@ -34,6 +33,21 @@ namespace Input.Models {
         /// 데이터 포인터
         /// </summary>
         public int DataPTR => fixed_data_length;
+
+        /// <summary>
+        /// <c>InputKeys.LeftAlt</c> 또는 <c>InputKeys.RightAlt</c>가 <c>InputKeyState.Down</c>상태라면 <see langword="true"/>를 반환합니다.
+        /// </summary>
+        public bool IsAlt => GetState(InputKeys.LeftAlt) == InputKeyState.Down || GetState(InputKeys.RightAlt) == InputKeyState.Down;
+
+        /// <summary>
+        /// <c>InputKeys.LeftControl</c> 또는 <c>InputKeys.RightControl</c>가 <c>InputKeyState.Down</c>상태라면 <see langword="true"/>를 반환합니다.
+        /// </summary>
+        public bool IsControl => GetState(InputKeys.LeftControl) == InputKeyState.Down || GetState(InputKeys.RightControl) == InputKeyState.Down;
+
+        /// <summary>
+        /// <c>InputKeys.LeftShift</c> 또는 <c>InputKeys.RightShift</c>가 <c>InputKeyState.Down</c>상태라면 <see langword="true"/>를 반환합니다.
+        /// </summary>
+        public bool IsShift => GetState(InputKeys.LeftShift) == InputKeyState.Down || GetState(InputKeys.RightShift) == InputKeyState.Down;
 
         bool disposedValue;
 

@@ -6,7 +6,7 @@ namespace Input {
     /// <summary>
     /// 인풋 후커
     /// </summary>
-    public static class Input {
+    public static class Inputs {
         static readonly Type[] supportPlatformsMethodReturnTypes = new Type[] { typeof(int), typeof(platform) };
         static readonly Dictionary<Type, Type[]> cached_types = new();
         internal static event CacheClearEvent? cache_clear_event;

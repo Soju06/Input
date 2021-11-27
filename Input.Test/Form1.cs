@@ -8,17 +8,17 @@ namespace Input.Test {
             InitializeComponent();
 
 
-            (keyboardHook = Input.Use<IKeyboardHook>()).Debug = true;
+            (keyboardHook = Inputs.Use<IKeyboardHook>()).Debug = true;
 
             keyboard = keyboardHook.KeyboardModel;
             keyboard.KeyUp += OnKeyUp;
             keyboard.KeyDown += OnKeyDown;
 
-            (mouseHook = Input.Use<IMouseHook>()).Debug = true;
+            (mouseHook = Inputs.Use<IMouseHook>()).Debug = true;
             mouse = mouseHook.MouseModel;
 
-            (keyboardSimulation = Input.Use<IKeyboardSimulation>()).Debug = true;
-            (mouseSimulation = Input.Use<IMouseSimulation>()).Debug = true;
+            (keyboardSimulation = Inputs.Use<IKeyboardSimulation>()).Debug = true;
+            (mouseSimulation = Inputs.Use<IMouseSimulation>()).Debug = true;
 
             mouse.State += OnMouseState;
 
@@ -217,7 +217,7 @@ namespace Input.Test {
         }
 
         public static void _dummy_method_mouse_input(InputMouseButtons button, int x, int y) {
-
+            // 대충 중요한거니 지우면 안돼요~
         }
     }
 }

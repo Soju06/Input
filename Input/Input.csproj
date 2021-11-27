@@ -8,12 +8,4 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Platforms\Windows\WindowsApplicationLoop.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Platforms\Windows\WindowsApplicationLoop.cs" />
-  </ItemGroup>
-
 </Project>

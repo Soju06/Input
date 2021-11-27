@@ -426,9 +426,10 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MinimumSize = new System.Drawing.Size(255, 158);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Test";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnClosing);
             this.Load += new System.EventHandler(this.OnLoad);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnTestAreaMouseDown);

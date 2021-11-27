@@ -174,6 +174,32 @@ namespace Input.Platforms.Windows {
             Released = 0x80
         }
 
+        [Serializable]
+        public struct WindowsMessage {
+            public IntPtr hwnd;
+
+            public IntPtr lParam;
+
+            public int message;
+
+            public int pt_x;
+
+            public int pt_y;
+
+            public int time;
+
+            public IntPtr wParam;
+        }
+
+        [DllImport("user32.dll")]
+        public static extern bool GetMessage(out WindowsMessage lpMsg, IntPtr hWnd, uint wMsgFilterMin, uint wMsgFilterMax);
+
+        [DllImport("user32.dll")]
+        public static extern bool TranslateMessage([In] ref WindowsMessage lpMsg);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr DispatchMessage([In] ref WindowsMessage lpmsg);
+
         public static InputButtons ConvetButton(int button, int extra) =>
             button switch {
                 WM_LBUTTONDOWN => InputButtons.LeftMouseDown,

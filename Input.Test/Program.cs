@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Input.Test {
     internal static class Program {
         /// <summary>
@@ -7,6 +9,22 @@ namespace Input.Test {
         static void Main() {
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+
+            //var keyboard = Input.Use<IKeyboardHook>();
+
+            //keyboard.HookStart();
+
+            //var func = (object sender, InputKeys key, InputKeyState state) => {
+            //    Debug.WriteLine($"{key} {state}");
+            //    return true;
+            //};
+
+            //keyboard.KeyboardModel.KeyUp += new(func);
+            //keyboard.KeyboardModel.KeyDown += new(func);
+
+            //while (WindowsMessagePump.Pumping()) {
+            //    Console.WriteLine("pump");
+            //}
         }
     }
 }
