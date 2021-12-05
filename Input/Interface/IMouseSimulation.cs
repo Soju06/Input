@@ -39,6 +39,11 @@
         /// </summary>
         void Click(int x, int y);
         /// <summary>
+        /// 클릭합니다.
+        /// </summary>
+        /// <param name="button">클릭 할 버튼입니다.</param>
+        void Click(InputMouseButtons button);
+        /// <summary>
         /// 마우스 기준으로 이동 후 클릭합니다.
         /// </summary>
         /// <param name="button">클릭 할 버튼입니다.</param>
@@ -59,6 +64,10 @@
         /// <param name="button">가져올 버튼입니다.</param>
         /// <returns></returns>
         bool IsMouseDown(InputMouseButtons button);
+        /// <summary>
+        /// 마우스의 위치를 가져옵니다.
+        /// </summary>
+        void GetMousePosition(out int x, out int y);
         /// <summary>
         /// 마우스 기준으로 이동합니다.
         /// </summary>

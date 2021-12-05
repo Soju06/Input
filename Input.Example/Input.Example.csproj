@@ -1,11 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="KeyboardHooking.cs" />
+    <Compile Remove="KeyboardSimulation.cs" />
+    <Compile Remove="MouseHooking.cs" />
+    <Compile Remove="SimpleMouseMacro.cs" />
+    <Compile Remove="SimpleMouseMacroSimulation.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SimpleMouseMacro.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="KeyboardHooking.cs" />
+    <None Include="KeyboardSimulation.cs" />
+    <None Include="MouseHooking.cs" />
+    <None Include="SimpleMouseMacroSimulation.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Input\Input.csproj" />

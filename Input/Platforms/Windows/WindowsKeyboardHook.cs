@@ -258,6 +258,6 @@ namespace Input.Platforms.Windows {
         public static WindowsKeyboardHook Create() =>
             new(true);
 
-        public static int GetSupportPlatforms() => (int)Input.platform.windows;
+        public static int GetSupportPlatforms() => (int)Inputs.platform.windows;
     }
 }

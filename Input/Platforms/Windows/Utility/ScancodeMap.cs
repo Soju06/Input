@@ -9,7 +9,7 @@ namespace Input.Platforms.Windows {
 
         ScanCodeMap() {
             cached_scancodes = GetCachedScancodes();
-            Input.cache_clear_event += CacheClear;
+            Inputs.cache_clear_event += CacheClear;
         }
 
         bool disposed = false;
@@ -27,7 +27,7 @@ namespace Input.Platforms.Windows {
         void CacheClear(bool f) {
             try {
                 if (f && disposed) {
-                    Input.cache_clear_event -= CacheClear;
+                    Inputs.cache_clear_event -= CacheClear;
                     return;
                 }
 

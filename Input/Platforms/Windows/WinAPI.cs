@@ -36,6 +36,9 @@ namespace Input.Platforms.Windows {
         [DllImport("user32.dll")] 
         public static extern int GetSystemMetrics(int systemMetric);
 
+        [DllImport("user32.dll")]
+        public static extern bool GetCursorPos(out LPoint lpPoint);
+
         public static uint SendInput(params Input[] inputs) =>
             SendInput((uint)inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
 

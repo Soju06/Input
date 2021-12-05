@@ -1,6 +1,11 @@
 ﻿namespace Input {
     public interface IKeyboardSimulation : IInputSimulation {
         /// <summary>
+        /// 최대 텍스트 엔트리 길이입니다.
+        /// </summary>
+        public uint MaxTextEntryLength { get; }
+
+        /// <summary>
         /// 키를 클릭합니다.
         /// </summary>
         /// <param name="keys">키</param>
@@ -39,6 +44,12 @@
         /// <param name="keys">키</param>
         /// <exception cref="ObjectDisposedException"></exception>
         public void KeyDown(params InputKeys[] keys);
+
+        /// <summary>
+        /// 텍스트 엔트리를 입력합니다.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException" />
+        public void TextEntry(string text);
 
         /// <summary>
         /// 모든 키를 뗌니다.

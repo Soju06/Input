@@ -3,6 +3,8 @@
         bool disposedValue;
         readonly ScanCodeMap scanCode_map;
 
+        public uint MaxTextEntryLength => ushort.MaxValue / 2;
+
         [Obsolete]
         public WindowsKeyboardSimulation() : this(true) {
 
@@ -49,6 +51,21 @@
         public void KeyUp(params InputKeys[] keys) =>
             xInput(keys, WinAPI.KeyboardInputFlags.KeyUp);
 
+        public void TextEntry(string text) {
+            if (text.Length > ushort.MaxValue / 2) throw new ArgumentOutOfRangeException(nameof(text), $"텍스트 길이가 너무 깁니다. 최대 길이는 {MaxTextEntryLength}입니다.");
+            var length = text.Length;
+
+            var inputs = new WinAPI.Input[length * 2];
+
+            for (int i = 0; i < length; i++) {
+                var _char = text[i];
+                inputs[i * 2] = CreateInput(_char, false);
+                inputs[i * 2 + 1] = CreateInput(_char, true);
+            }
+
+            WinAPI.SendInput(inputs);
+        }
+
         public void ReleaseAllKeys() {
             var keys = (WindowsKeys[])Enum.GetValues(typeof(WindowsKeys));
             if (disposedValue)
@@ -88,6 +105,22 @@
         }
 
 
+        WinAPI.Input CreateInput(char code, bool isDown) {
+            return new() {
+                type = WinAPI.InputType.Keyboard,
+                u = new() {
+                    ki = new() {
+                        wVk = 0,
+                        wScan = code,
+                        dwFlags = WinAPI.KeyboardInputFlags.Unicode |
+                                  ((code & 0xFF00) == 0xE000 ? WinAPI.KeyboardInputFlags.ExtendedKey : 0) |
+                                  (!isDown ? WinAPI.KeyboardInputFlags.KeyUp : 0),
+                        time = 0,
+                        dwExtraInfo = UIntPtr.Zero,
+                    }
+                }
+            };
+        }
 
         WinAPI.Input CreateInput(WindowsKeys lkey) {
             return new() {
@@ -127,6 +160,6 @@
         public static WindowsKeyboardSimulation Create() =>
             new(true);
 
-        public static int GetSupportPlatforms() => (int)Input.platform.windows;
+        public static int GetSupportPlatforms() => (int)Inputs.platform.windows;
     }
 }

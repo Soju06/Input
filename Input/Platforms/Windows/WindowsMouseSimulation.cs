@@ -23,6 +23,9 @@
         public void Click(InputMouseButtons button, int x, int y) =>
             xMoveClick(x, y, button, false);
 
+        public void Click(InputMouseButtons button) =>
+            Click(ConvertFlags(button, true), ConvertFlags(button, false));
+
         public void AbsoluteClick(int x, int y) =>
             MoveClick(x, y, true, WinAPI.MouseInputFlags.LeftDown, WinAPI.MouseInputFlags.LeftUp);
 
@@ -70,7 +73,7 @@
 
         public void Scroll(int scale) {
             if (scale >= 0) ScrollDown((uint)scale);
-            else ScrollDown((uint)(scale * -1));
+            else ScrollDown((uint)scale);
         }
 
         public void ScrollDown(uint scale) {
@@ -78,7 +81,7 @@
         }
 
         public void ScrollUp(uint scale) {
-            WinAPI.SendInput(CreateInput(0, 0, WinAPI.MouseInputFlags.Wheel, unchecked((uint)-scale) * 120));
+            WinAPI.SendInput(CreateInput(0, 0, WinAPI.MouseInputFlags.Wheel, (uint)(-scale * 120)));
         }
 
         public bool IsMouseDown(InputMouseButtons buttons) =>
@@ -88,6 +91,12 @@
                 InputMouseButtons.Wheel => WindowsKeys.MButton,
                 _ => 0
             })) < 0;
+
+        public void GetMousePosition(out int x, out int y) {
+            WinAPI.GetCursorPos(out var pos);
+            x = pos.x;
+            y = pos.y;
+        }
 
         void Click(WinAPI.MouseInputFlags a1, WinAPI.MouseInputFlags a2) {
             WinAPI.SendInput(
@@ -166,6 +175,6 @@
         public static WindowsMouseSimulation Create() =>
             new(true);
 
-        public static int GetSupportPlatforms() => (int)Input.platform.windows;
+        public static int GetSupportPlatforms() => (int)Inputs.platform.windows;
     }
 }
