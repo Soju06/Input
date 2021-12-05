@@ -1,4 +1,4 @@
-﻿// 1.3 키보드 시뮬레이션 예제입니다.
+﻿// 2.3 키보드 시뮬레이션 예제입니다.
 using Input;
 using System.Diagnostics;
 

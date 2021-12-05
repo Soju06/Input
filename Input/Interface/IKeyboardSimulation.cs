@@ -53,7 +53,7 @@
 
         /// <summary>
         /// 모든 키를 뗌니다.
-        /// 플랫폼에 따라 비용이 비쌀 수도 있습니다.
+        /// 플랫폼에 따라 시간이 발생할 수 있습니다.
         /// </summary>
         public void ReleaseAllKeys();
 

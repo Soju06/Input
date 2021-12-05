@@ -6,6 +6,20 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputType>Library</OutputType>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>V:\PK\public.snk</AssemblyOriginatorKeyFile>
+    <Description>멀티플랫폼 키보드/마우스 후킹 및 시뮬레이션 라이브러리
+
+Multiplatform keyboard/mouse hooking and simulation library</Description>
+    <Copyright>Soju06</Copyright>
+    <PackageProjectUrl>https://github.com/Soju06/Input</PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <RepositoryType></RepositoryType>
+    <PackageTags>input;keyboard;mouse;hook;hooking;simulation;windows;linux;macos;sendinput</PackageTags>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>

@@ -10,19 +10,21 @@
 
   <ItemGroup>
     <Compile Remove="KeyboardHooking.cs" />
-    <Compile Remove="KeyboardSimulation.cs" />
     <Compile Remove="MouseHooking.cs" />
+    <Compile Remove="MouseSimulation.cs" />
+    <Compile Remove="SimpleKeyboardSimulation.cs" />
     <Compile Remove="SimpleMouseMacro.cs" />
     <Compile Remove="SimpleMouseMacroSimulation.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="MouseSimulation.cs" />
     <None Include="SimpleMouseMacro.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="KeyboardHooking.cs" />
-    <None Include="KeyboardSimulation.cs" />
+    <None Include="SimpleKeyboardSimulation.cs" />
     <None Include="MouseHooking.cs" />
     <None Include="SimpleMouseMacroSimulation.cs" />
   </ItemGroup>
