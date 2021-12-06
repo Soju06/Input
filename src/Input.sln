@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Input", "Input\Input.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Input.Test", "Input.Test\Input.Test.csproj", "{B8503A1F-1998-47B5-A7A3-40A3163CA72B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Input.Example", "Input.Example\Input.Example.csproj", "{65AB1093-AEEB-4E38-8191-E6A75B90B0A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Input.Example", "Input.Example\Input.Example.csproj", "{65AB1093-AEEB-4E38-8191-E6A75B90B0A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
