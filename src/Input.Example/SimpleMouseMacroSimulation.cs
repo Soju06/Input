@@ -13,7 +13,7 @@ simulation.Debug = true;
 
 INIT_SCRIPT:
 Console.WriteLine();
-Console.WriteLine("SimpleMopuseMacro.cs 예제에서 만들어진 스크립트를 붙여넣으십시오. (스크립트 파일 경로 가능)");
+Console.WriteLine("SimpleMouseMacroRec.cs 예제에서 만들어진 스크립트를 붙여넣으십시오. (스크립트 파일 경로 가능)");
 var s_script = Console.ReadLine();
 if (string.IsNullOrWhiteSpace(s_script))
     goto INIT_SCRIPT;

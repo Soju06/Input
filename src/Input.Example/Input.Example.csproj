@@ -13,13 +13,13 @@
     <Compile Remove="MouseHooking.cs" />
     <Compile Remove="MouseSimulation.cs" />
     <Compile Remove="SimpleKeyboardSimulation.cs" />
-    <Compile Remove="SimpleMouseMacro.cs" />
+    <Compile Remove="SimpleMouseMacroRec.cs" />
     <Compile Remove="SimpleMouseMacroSimulation.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="MouseSimulation.cs" />
-    <None Include="SimpleMouseMacro.cs" />
+    <None Include="SimpleMouseMacroRec.cs" />
   </ItemGroup>
 
   <ItemGroup>
