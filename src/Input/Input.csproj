@@ -10,14 +10,16 @@
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>V:\PK\keypair.snk</AssemblyOriginatorKeyFile>
-    <Description>멀티플랫폼 키보드/마우스 후킹 및 시뮬레이션 라이브러리
+    <Description>Multiplatform keyboard/mouse hooking and simulation library
 
-Multiplatform keyboard/mouse hooking and simulation library</Description>
+멀티플랫폼 키보드/마우스 후킹 및 시뮬레이션 라이브러리</Description>
     <Copyright>Soju06</Copyright>
     <PackageProjectUrl>https://github.com/Soju06/Input</PackageProjectUrl>
-    <RepositoryUrl></RepositoryUrl>
-    <RepositoryType></RepositoryType>
-    <PackageTags>input;keyboard;mouse;hook;hooking;simulation;windows;linux;macos;sendinput</PackageTags>
+	<Authors>Soju06</Authors>
+	<Company>Soju06</Company>
+	<Version>1.0.1</Version>
+	<RepositoryUrl>https://github.com/Soju06/Input</RepositoryUrl>
+    <PackageTags>keyboard;multi-platform;input;mouse;mouse-tracking;win32;keyboard-events;keyboard-handling;keyboard-hook;mouse-hook;win32-api;mouse-event;keyboard-simulator;mouse-simulator</PackageTags>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>

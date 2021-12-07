@@ -1,5 +1,4 @@
 using Input.Models;
-using Input.Platforms.Windows;
 using System.Reflection;
 
 namespace Input.Test {
