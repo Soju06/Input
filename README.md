@@ -25,12 +25,12 @@ Input 위키
 
 - #### Package Manager
   ```shell
-  Install-Package Input -Version 1.0.0
+  Install-Package Input
   ```
 
 - #### .NET CLI
   ```shell
-  dotnet add package Input --version 1.0.0
+  dotnet add package Input
   ```
   
 # 📚 Samples
