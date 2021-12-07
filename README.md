@@ -20,6 +20,19 @@ Input 위키
   
   API 사용 테스트 도구입니다.
 
+# 📦 Install
+패키지 설치 방법
+
+- #### Package Manager
+  ```shell
+  Install-Package Input -Version 1.0.0
+  ```
+
+- #### .NET CLI
+  ```shell
+  dotnet add package Input --version 1.0.0
+  ```
+  
 # 📚 Samples
 
 더 많은 샘플은 [Example](https://github.com/Soju06/Input/wiki#example)에서 확인할 수 있습니다.
