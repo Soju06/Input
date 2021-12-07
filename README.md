@@ -52,7 +52,7 @@ Input 위키
   Console.ReadLine();
   ```
   
-  자세한 예제는 (여기)[https://github.com/Soju06/Input/wiki/Keyboard-Interface#inputikeyboardhook]에서 확인할 수 있습니다.
+  자세한 예제는 [여기](https://github.com/Soju06/Input/wiki/Keyboard-Interface#inputikeyboardhook)에서 확인할 수 있습니다.
   
 - 🖱️ Mouse Hook
   ```cs
@@ -81,7 +81,7 @@ Input 위키
   Console.ReadLine();
   ```
   
-  자세한 예제는 (여기)[https://github.com/Soju06/Input/wiki/Mouse-Interface#inputimousehook]에서 확인할 수 있습니다.
+  자세한 예제는 [여기](https://github.com/Soju06/Input/wiki/Mouse-Interface#inputimousehook)에서 확인할 수 있습니다.
   
 ## Simulation
 키보드 및 마우스 시뮬레이션 예제입니다.
@@ -124,7 +124,7 @@ Input 위키
   simulation.ReleaseAllKeys();
   ```
   
-  자세한 예제는 (여기)[https://github.com/Soju06/Input/wiki/Keyboard-Interface#inputikeyboardsimulation]에서 확인할 수 있습니다.
+  자세한 예제는 [여기](https://github.com/Soju06/Input/wiki/Keyboard-Interface#inputikeyboardsimulation)에서 확인할 수 있습니다.
   
 - 🖱️ Mouse Simulation
   ```cs
@@ -187,5 +187,5 @@ Input 위키
   ```
   
   
-  자세한 예제는 (여기)[https://github.com/Soju06/Input/wiki/Mouse-Interface#inputimousesimulation]에서 확인할 수 있습니다.
+  자세한 예제는 [여기](https://github.com/Soju06/Input/wiki/Mouse-Interface#inputimousesimulation)에서 확인할 수 있습니다.
   
