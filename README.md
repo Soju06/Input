@@ -15,6 +15,7 @@ Input 위키
   </li>
   <li>
     <h3><a href="https://github.com/Soju06/Input/wiki#-inputtest">🧪 Input.Test</a></h3>
+    <img src="https://user-images.githubusercontent.com/34199905/144855310-19bf0a38-c744-40e8-a84a-1d0d8645bd34.png" width="70%" />
     <p>API 사용 테스트 도구입니다.</p>
   </li>
 </ul>
