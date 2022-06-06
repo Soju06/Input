@@ -205,3 +205,4 @@ Input 위키
   
   자세한 예제는 [여기](https://github.com/Soju06/Input/wiki/Mouse-Interface#inputimousesimulation)에서 확인할 수 있습니다.
   
+©️ Soju06 - MIT Licence
