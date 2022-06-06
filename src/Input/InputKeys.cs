@@ -290,5 +290,15 @@
 		Control = 0x94,
 		/// <summary>The Application/Windows Key Modifier</summary>
 		Application = 0x98,  // windows/command key
-	}
+
+        // issue #1 - missing slash key
+        /// <summary>The media next track key. (Windows only)</summary>
+        NextTrack = 0xF1,
+        /// <summary>The media previous track key. (Windows only)</summary>
+        PreviousTrack = 0xF2,
+        /// <summary>The media Stop key. (Windows only)</summary>
+        Stop = 0xF3,
+        /// <summary>The media play pause key. (Windows only)</summary>
+        PlayPause = 0xF4,
+    }
 }

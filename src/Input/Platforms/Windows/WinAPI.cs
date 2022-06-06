@@ -355,15 +355,24 @@ namespace Input.Platforms.Windows {
                 WindowsKeys.LMenu => InputKeys.LeftAlt,
                 WindowsKeys.RMenu => InputKeys.RightAlt,
                 WindowsKeys.OemSemicolon => InputKeys.Semicolon,
-                WindowsKeys.Oemplus => InputKeys.Add,
+                WindowsKeys.Oemplus => InputKeys.Equal,
                 WindowsKeys.Oemcomma => InputKeys.Comma,
                 WindowsKeys.OemMinus => InputKeys.Minus,
                 WindowsKeys.OemPeriod => InputKeys.Period,
                 WindowsKeys.OemOpenBrackets => InputKeys.LeftBracket,
                 WindowsKeys.OemCloseBrackets => InputKeys.RightBracket,
                 WindowsKeys.OemQuotes => InputKeys.Quote,
-                WindowsKeys.OemBackslash => InputKeys.Backslash,
                 WindowsKeys.OemClear => InputKeys.Clear,
+                // issue #1 - missing slash key
+                WindowsKeys.OemQuestion => InputKeys.Slash,
+                WindowsKeys.Oemtilde => InputKeys.Grave,
+                WindowsKeys.OemPipe or WindowsKeys.OemBackslash => InputKeys.Backslash,
+                WindowsKeys.Add => InputKeys.Add,
+                WindowsKeys.MediaNextTrack => InputKeys.NextTrack,
+                WindowsKeys.MediaPreviousTrack => InputKeys.PreviousTrack,
+                WindowsKeys.MediaPlayPause => InputKeys.PlayPause,
+                WindowsKeys.MediaStop => InputKeys.Stop,
+
                 _ => 0
                 #endregion
             };
@@ -481,7 +490,6 @@ namespace Input.Platforms.Windows {
                 InputKeys.LeftAlt => WindowsKeys.LMenu,
                 InputKeys.RightAlt => WindowsKeys.RMenu,
                 InputKeys.Semicolon => WindowsKeys.OemSemicolon,
-                InputKeys.Add => WindowsKeys.Oemplus,
                 InputKeys.Comma => WindowsKeys.Oemcomma,
                 InputKeys.Minus => WindowsKeys.OemMinus,
                 InputKeys.Period => WindowsKeys.OemPeriod,
@@ -490,6 +498,16 @@ namespace Input.Platforms.Windows {
                 InputKeys.Quote => WindowsKeys.OemQuotes,
                 InputKeys.Backslash => WindowsKeys.OemBackslash,
                 InputKeys.NumpadEnter => WindowsKeys.Enter,
+                // issue #1 - missing slash key
+                InputKeys.Slash => WindowsKeys.OemQuestion,
+                InputKeys.Grave => WindowsKeys.Oemtilde,
+                InputKeys.Equal => WindowsKeys.Oemplus,
+                InputKeys.Add => WindowsKeys.Add,
+
+                InputKeys.NextTrack => WindowsKeys.MediaNextTrack,
+                InputKeys.PreviousTrack => WindowsKeys.MediaPreviousTrack,
+                InputKeys.PlayPause => WindowsKeys.MediaPlayPause,
+                InputKeys.Stop => WindowsKeys.MediaStop,
                 _ => 0
                 #endregion
             };
