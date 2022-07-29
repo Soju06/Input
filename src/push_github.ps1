@@ -6,8 +6,8 @@ $path = "./Input/bin/Release/Input." + $ver_value + ".nupkg"
 [void][System.Console]::WriteLine("Press any key to continue...")
 [void][System.Console]::ReadKey($true)
 
-[void][System.Console]::WriteLine("Pushing to nuget.org...")
-nuget push $path -source "github"
+[void][System.Console]::WriteLine("Pushing to github.com...")
+nuget push $path -source https://nuget.pkg.github.com/soju06/index.json 
 
 [void][System.Console]::WriteLine()
 [void][System.Console]::WriteLine("Press any key to continue...")

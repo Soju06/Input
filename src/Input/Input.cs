@@ -86,6 +86,26 @@ namespace Input {
         }
 
         /// <summary>
+        /// 이 라이브러리에서 해당 플랫폼을 지원하는지 여부를 가져옵니다.
+        /// </summary>
+        /// <param name="inputType">타입</param>
+        /// <param name="assembly">참조 어셈블리</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static bool IsPlatformSupported(Type inputType) =>
+            IsPlatformSupported(inputType, null);
+
+        /// <summary>
+        /// 이 라이브러리에서 해당 플랫폼을 지원하는지 여부를 가져옵니다.
+        /// </summary>
+        /// <param name="inputType">타입</param>
+        /// <param name="assembly">참조 어셈블리</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static bool IsPlatformSupported(Type inputType, Assembly? assembly) {
+            if (inputType == null) throw new ArgumentNullException(nameof(inputType));
+            return GetSupportedModule(inputType, assembly) != null;
+        }
+
+        /// <summary>
         /// 캐시된 개체를 초기화 합니다.
         /// 
         /// level >= 0:
@@ -116,7 +136,6 @@ namespace Input {
         /// 최대 캐시 래벨입니다.
         /// </summary>
         public static readonly uint MaxCacheLevel = 1;
-
 
 
         static Type? GetSupportedModule(Type hookType, Assembly? assembly = null) {

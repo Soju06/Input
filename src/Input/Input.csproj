@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net6.0;net5.0;net5.0;net462;net47</TargetFrameworks>
 	<LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/Soju06/Input</PackageProjectUrl>
 	<Authors>Soju06</Authors>
 	<Company>Soju06</Company>
-	<Version>1.0.2</Version>
+	<Version>1.0.3</Version>
 	<RepositoryUrl>https://github.com/Soju06/Input</RepositoryUrl>
     <PackageTags>keyboard;multi-platform;input;mouse;mouse-tracking;win32;keyboard-events;keyboard-handling;keyboard-hook;mouse-hook;win32-api;mouse-event;keyboard-simulator;mouse-simulator</PackageTags>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -25,6 +25,11 @@
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Core" Version="3.5.21022.801" />
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

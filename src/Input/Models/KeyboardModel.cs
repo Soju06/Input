@@ -37,17 +37,17 @@ namespace Input.Models {
         /// <summary>
         /// <c>InputKeys.LeftAlt</c> 또는 <c>InputKeys.RightAlt</c>가 <c>InputKeyState.Down</c>상태라면 <see langword="true"/>를 반환합니다.
         /// </summary>
-        public bool IsAlt => GetState(InputKeys.LeftAlt) == InputKeyState.Down || GetState(InputKeys.RightAlt) == InputKeyState.Down;
+        public bool IsAlt => GetKeyDown(InputKeys.LeftAlt) || GetKeyDown(InputKeys.RightAlt);
 
         /// <summary>
         /// <c>InputKeys.LeftControl</c> 또는 <c>InputKeys.RightControl</c>가 <c>InputKeyState.Down</c>상태라면 <see langword="true"/>를 반환합니다.
         /// </summary>
-        public bool IsControl => GetState(InputKeys.LeftControl) == InputKeyState.Down || GetState(InputKeys.RightControl) == InputKeyState.Down;
+        public bool IsControl => GetKeyDown(InputKeys.LeftControl) || GetKeyDown(InputKeys.RightControl);
 
         /// <summary>
         /// <c>InputKeys.LeftShift</c> 또는 <c>InputKeys.RightShift</c>가 <c>InputKeyState.Down</c>상태라면 <see langword="true"/>를 반환합니다.
         /// </summary>
-        public bool IsShift => GetState(InputKeys.LeftShift) == InputKeyState.Down || GetState(InputKeys.RightShift) == InputKeyState.Down;
+        public bool IsShift => GetKeyDown(InputKeys.LeftShift) || GetKeyDown(InputKeys.RightShift);
 
         bool disposedValue;
 
@@ -63,7 +63,7 @@ namespace Input.Models {
                     input_data[i] = (byte)input_keys[i];
                 // 데이터 클리어
                 for (int i = 0; i < fixed_data_length; i++)
-                    input_data[fixed_data_length + i] = 0;
+                    input_data[fixed_data_length + i] = (byte)InputKeyState.Up;
             }
         }
 
@@ -83,9 +83,31 @@ namespace Input.Models {
         /// 상태를 가져옵니다.
         /// </summary>
         /// <param name="key">키</param>
-        public virtual unsafe InputKeyState GetState(InputKeys key) {
-            return (InputKeyState)input_data[find_data_index((byte)key)];
-        }
+        public virtual unsafe InputKeyState GetState(InputKeys key) =>
+            (InputKeyState)input_data[find_data_index((byte)key)];
+
+        /// <summary>
+        /// 키 상태 여부를 가져옵니다.
+        /// </summary>
+        /// <param name="key">키</param>
+        /// <param name="state">상태</param>
+        /// <returns></returns>
+        public bool GetState(InputKeys key, InputKeyState state) =>
+            (GetState(key) & state) != 0;
+
+        /// <summary>
+        /// 키가 눌렸는지 가져옵니다.
+        /// </summary>
+        /// <param name="key">키</param>
+        public virtual unsafe bool GetKeyDown(InputKeys key) =>
+            GetState(key, InputKeyState.Down);
+
+        /// <summary>
+        /// 키가 떼졌는지 가져옵니다.
+        /// </summary>
+        /// <param name="key">키</param>
+        public virtual unsafe bool GetKeyUp(InputKeys key) =>
+            GetState(key, InputKeyState.Up);
 
         protected virtual unsafe int find_data_index(byte key) {
             for (int i = 0; i < fixed_data_length; i++)
